@@ -1,0 +1,1 @@
+Simulation of gravitational interaction beetween stars. WIP
