@@ -35,6 +35,7 @@ public class Star : MonoBehaviour
 
         starObj.GetComponent<Rigidbody>().mass = _mass;
         starObj.GetComponent<Rigidbody>().linearVelocity = _velocity;
+
     }
 
     private void FixedUpdate()
@@ -42,16 +43,16 @@ public class Star : MonoBehaviour
         GameObject gameObject = GameObject.Find("Manager");
         WorldManager worldManager = gameObject.GetComponent<WorldManager>();
         timeMult = worldManager.timeMult;
-        starObj.transform.position += timeMult * Time.deltaTime * starObj.GetComponent<Rigidbody>().linearVelocity;
+        starObj.transform.position += Time.deltaTime * starObj.GetComponent<Rigidbody>().linearVelocity;
         
         foreach(GameObject currStar in worldManager.starObjs)
         { 
             //_velocity += Gravity(currStar, starObj);
             starObj.GetComponent<Rigidbody>().AddForce(Gravity(currStar, starObj));
         }
-
+        
         Debug.Log(_name);
-        Debug.Log(_velocity);
+        Debug.Log(_velocity.magnitude);
     }
 
     Vector3 Gravity(GameObject currStar_, GameObject star_)
@@ -71,4 +72,6 @@ public class Star : MonoBehaviour
             return Vector3.zero;
         }
     }
+
+
 }

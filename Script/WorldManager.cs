@@ -8,7 +8,7 @@ public class WorldManager : MonoBehaviour
     public GameObject starPrefab;
     public const float G = 66743f; //0.66743f;  // 0.000000000066743f
     public float timeMult = 1.0f;
-
+    bool pause = false;
     List<Star> stars;
     Color32 orange = new Color32(20, 255, 255, 255);
 
@@ -55,5 +55,23 @@ public class WorldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Pause();
+        }
+    }
+
+    private void Pause()
+    {
+        if (pause == false)
+        {
+            Time.timeScale = 0;
+            pause = true;
+        }
+        else if (pause == true)
+        {
+            Time.timeScale = 1;
+            pause = false;
+        }
     }
 }
